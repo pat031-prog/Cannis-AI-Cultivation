@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cannis AI Cultivation Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0d1b0d, #1a2f1a, #0f1f0f);
+            color: #e8f5e8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .status-dot-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .progress-glow {
+            animation: progress-glow 2s ease-in-out infinite;
+        }
+        @keyframes progress-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(74, 222, 128, 0.4); }
+            50% { box-shadow: 0 0 15px rgba(74, 222, 128, 0.8); }
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(-10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .animate-fade-in { 
+            animation: fadeIn 0.3s ease-out forwards; 
+        }
+        
+        /* Floating Particles Effect */
+        .floating-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            bottom: 0;
+            width: 3px;
+            height: 3px;
+            background: #4ade80; /* green-400 */
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-float var(--duration, 8s) linear infinite;
+            animation-delay: var(--delay, 0s);
+        }
+        @keyframes particle-float {
+            0% { opacity: 0; transform: translateY(0) translateX(0); }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { opacity: 0; transform: translateY(-100vh) translateX(50px); }
+        }
+
+        /* AI Loader animations */
+        @keyframes grow-stem {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes unfurl-leaf-right {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes unfurl-leaf-left {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-grow-stem {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: grow-stem 1s ease-out forwards;
+        }
+        .animate-unfurl-leaf-right, .animate-unfurl-leaf-left {
+            opacity: 0;
+            animation-duration: 1.5s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+        }
+        .animate-unfurl-leaf-right { animation-name: unfurl-leaf-right; }
+        .animate-unfurl-leaf-left { animation-name: unfurl-leaf-left; }
+
+        /* News Ticker Animation */
+        @keyframes ticker-scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-ticker-scroll {
+            animation: ticker-scroll 40s linear infinite;
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.16.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
